@@ -14,10 +14,7 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "E-Commerce Selector",
-  "categories": [
-    "UTILITY"
-  ],
-  "description": "Finds last push to dataLayer with a specific ecommerce  event (UA or GA4). Optionally edit or remove keys",
+  "description": "Finds last push to dataLayer with a specific ecommerce  event (UA or GA4). Optionally edit or remove keys from ecommerce object.",
   "containerContexts": [
     "WEB"
   ]
@@ -101,6 +98,7 @@ for (var i = dl.length-1; i >= 0; i--){
 }  
 
 if (foundIndex >= 0) {
+  //return only ecommerce key if UA format - otherwise complete event push
   var rs = dl[foundIndex].ecommerce;
   data.removeKeys.forEach(rmk => {
     Object.delete(rs, rmk.keyName);
@@ -109,7 +107,7 @@ if (foundIndex >= 0) {
     rs[edk.keyName] = edk.value;
   });
   
-  return rs;
+  return {ecommerce: rs};
 }
 
 
@@ -187,4 +185,4 @@ scenarios: []
 
 ___NOTES___
 
-Created on 24.8.2022, 23:51:08
+Created on 25.8.2022, 16:50:24
