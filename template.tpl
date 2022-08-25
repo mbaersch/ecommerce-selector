@@ -14,6 +14,9 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "E-Commerce Selector",
+  "categories": [
+    "UTILITY"
+  ],  
   "description": "Finds last push to dataLayer with a specific ecommerce  event (UA or GA4). Optionally edit or remove keys from ecommerce object.",
   "containerContexts": [
     "WEB"
