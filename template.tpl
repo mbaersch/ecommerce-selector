@@ -103,13 +103,14 @@ for (var i = dl.length-1; i >= 0; i--){
 if (foundIndex >= 0) {
   //return only ecommerce key if UA format - otherwise complete event push
   var rs = dl[foundIndex].ecommerce;
-  data.removeKeys.forEach(rmk => {
-    Object.delete(rs, rmk.keyName);
-  });
-  data.editKeys.forEach(edk => {
-    rs[edk.keyName] = edk.value;
-  });
-  
+  if (data.removeKeys) 
+    data.removeKeys.forEach(rmk => {
+      Object.delete(rs, rmk.keyName);
+    });
+  if (data.editKeys) 
+    data.editKeys.forEach(edk => {
+      rs[edk.keyName] = edk.value;
+    });  
   return {ecommerce: rs};
 }
 
